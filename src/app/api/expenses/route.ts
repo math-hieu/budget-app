@@ -3,6 +3,8 @@ import { prisma } from '@/lib/db';
 import { ExpenseSchema } from '@/lib/validation';
 import { ZodError } from 'zod';
 
+export const dynamic = 'force-dynamic';
+
 // GET /api/expenses - Fetch all recurring expenses with current month payment status
 export async function GET(request: NextRequest) {
   try {

@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { z } from 'zod';
 
+export const dynamic = 'force-dynamic';
+
 const PaymentSchema = z.object({
   description: z.string().min(1).max(200),
   amount: z.number().positive(),

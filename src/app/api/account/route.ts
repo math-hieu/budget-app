@@ -3,6 +3,8 @@ import { prisma } from '@/lib/db';
 import { AccountSchema, formatZodError } from '@/lib/validation';
 import { Decimal } from '@prisma/client/runtime/library';
 
+export const dynamic = 'force-dynamic';
+
 // GET /api/account - Fetch account balance
 export async function GET() {
   try {

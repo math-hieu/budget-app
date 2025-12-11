@@ -3,6 +3,8 @@ import { prisma } from '@/lib/db';
 import { SavingsSchema, formatZodError } from '@/lib/validation';
 import { Decimal } from '@prisma/client/runtime/library';
 
+export const dynamic = 'force-dynamic';
+
 // GET /api/savings - Fetch all virtual savings
 export async function GET() {
   try {
