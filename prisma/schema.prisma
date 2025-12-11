@@ -3,11 +3,13 @@
 generator client {
   provider = "prisma-client-js"
   binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+  previewFeatures = ["multiSchema"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  schemas  = ["budget_app"]
 }
 
 model Account {
@@ -17,6 +19,7 @@ model Account {
   updatedAt  DateTime @updatedAt @map("updated_at")
 
   @@map("account")
+  @@schema("budget_app")
 }
 
 model VirtualSaving {
@@ -28,6 +31,7 @@ model VirtualSaving {
 
   @@index([createdAt])
   @@map("virtual_saving")
+  @@schema("budget_app")
 }
 
 model RecurringExpense {
@@ -40,6 +44,7 @@ model RecurringExpense {
 
   @@index([createdAt])
   @@map("recurring_expense")
+  @@schema("budget_app")
 }
 
 model RecurringExpensePayment {
@@ -57,6 +62,7 @@ model RecurringExpensePayment {
   @@index([month, year])
   @@index([isPaid])
   @@map("recurring_expense_payment")
+  @@schema("budget_app")
 }
 
 model PendingPayment {
@@ -70,6 +76,7 @@ model PendingPayment {
   @@index([isPaid])
   @@index([createdAt])
   @@map("pending_payment")
+  @@schema("budget_app")
 }
 
 model PendingReimbursement {
@@ -81,4 +88,5 @@ model PendingReimbursement {
 
   @@index([createdAt])
   @@map("pending_reimbursement")
+  @@schema("budget_app")
 }
