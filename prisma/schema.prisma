@@ -1,0 +1,84 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id         String   @id @default(uuid())
+  balance    Decimal  @db.Decimal(10, 2)
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@map("account")
+}
+
+model VirtualSaving {
+  id         String   @id @default(uuid())
+  name       String   @db.VarChar(100)
+  amount     Decimal  @db.Decimal(10, 2)
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@index([createdAt])
+  @@map("virtual_saving")
+}
+
+model RecurringExpense {
+  id          String                      @id @default(uuid())
+  description String                      @db.VarChar(200)
+  amount      Decimal                     @db.Decimal(10, 2)
+  payments    RecurringExpensePayment[]
+  createdAt   DateTime                    @default(now()) @map("created_at")
+  updatedAt   DateTime                    @updatedAt @map("updated_at")
+
+  @@index([createdAt])
+  @@map("recurring_expense")
+}
+
+model RecurringExpensePayment {
+  id                  String           @id @default(uuid())
+  recurringExpenseId  String           @map("recurring_expense_id")
+  recurringExpense    RecurringExpense @relation(fields: [recurringExpenseId], references: [id], onDelete: Cascade)
+  month               Int              // 1-12
+  year                Int
+  isPaid              Boolean          @default(false) @map("is_paid")
+  paidAt              DateTime?        @map("paid_at")
+  createdAt           DateTime         @default(now()) @map("created_at")
+  updatedAt           DateTime         @updatedAt @map("updated_at")
+
+  @@unique([recurringExpenseId, month, year])
+  @@index([month, year])
+  @@index([isPaid])
+  @@map("recurring_expense_payment")
+}
+
+model PendingPayment {
+  id          String   @id @default(uuid())
+  description String   @db.VarChar(200)
+  amount      Decimal  @db.Decimal(10, 2)
+  isPaid      Boolean  @default(false) @map("is_paid")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([isPaid])
+  @@index([createdAt])
+  @@map("pending_payment")
+}
+
+model PendingReimbursement {
+  id          String   @id @default(uuid())
+  description String   @db.VarChar(200)
+  amount      Decimal  @db.Decimal(10, 2)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([createdAt])
+  @@map("pending_reimbursement")
+}

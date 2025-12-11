@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(.specify/scripts/bash/setup-plan.sh:*)",
+      "Bash(npx prisma migrate dev:*)",
+      "Bash(node prisma/seed.js:*)",
+      "Bash(bash:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(npm test:*)",
+      "Bash(npm install:*)",
+      "Bash(.specify/scripts/bash/check-prerequisites.sh:*)",
+      "Bash(if [ -d \"/Users/mthomas/utils/budget-app/specs/001-budget-tracker/checklists\" ])",
+      "Bash(then echo \"exists\")",
+      "Bash(else echo \"not_found\")",
+      "Bash(fi)",
+      "Bash(docker-compose:*)",
+      "Bash(curl:*)",
+      "Bash(npx prisma:*)",
+      "Bash(npx tsc:*)",
+      "Bash(node -c:*)",
+      "Bash(timeout 30 npm run build:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

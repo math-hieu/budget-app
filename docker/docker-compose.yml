@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: budget-app-db
+    environment:
+      POSTGRES_DB: budget_app
+      POSTGRES_USER: budget_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U budget_user -d budget_app"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: budget-app
+    environment:
+      DATABASE_URL: postgresql://budget_user:${DB_PASSWORD}@db:5432/budget_app
+      NODE_ENV: ${NODE_ENV:-development}
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ../src:/app/src:delegated
+      - /app/node_modules
+      - /app/.next
+
+volumes:
+  postgres_data:
