@@ -19,6 +19,7 @@
     "test:contract": "jest tests/contract",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
+    "postinstall": "prisma generate",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
