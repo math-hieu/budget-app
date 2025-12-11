@@ -41,48 +41,79 @@ export default function SavingsList({
 
   return (
     <Card>
-      <CardContent>
-        <Typography variant="h6" gutterBottom>
+      <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
+        <Typography
+          variant="h6"
+          gutterBottom
+          sx={{ fontSize: { xs: '1rem', sm: '1.25rem' } }}
+        >
           Économies Virtuelles
         </Typography>
         {savings.length === 0 ? (
-          <Typography variant="body2" color="text.secondary" sx={{ py: 3, textAlign: 'center' }}>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{
+              py: 3,
+              textAlign: 'center',
+              fontSize: { xs: '0.875rem', sm: '0.875rem' }
+            }}
+          >
             Aucune catégorie d'économie virtuelle pour le moment. Ajoutez-en une pour commencer !
           </Typography>
         ) : (
           <>
-            <List>
+            <List sx={{ p: { xs: 0, sm: 0 } }}>
               {savings.map((saving) => (
                 <Box key={saving.id}>
                   <ListItem
-                    secondaryAction={
-                      <Box>
-                        <IconButton
-                          edge="end"
-                          aria-label="edit"
-                          onClick={() => onEdit(saving)}
-                          disabled={loading}
-                          sx={{ mr: 1 }}
-                        >
-                          <EditIcon />
-                        </IconButton>
-                        <IconButton
-                          edge="end"
-                          aria-label="delete"
-                          onClick={() => onDelete(saving.id)}
-                          disabled={loading}
-                        >
-                          <DeleteIcon />
-                        </IconButton>
-                      </Box>
-                    }
+                    sx={{
+                      flexDirection: { xs: 'column', sm: 'row' },
+                      alignItems: { xs: 'stretch', sm: 'center' },
+                      py: { xs: 1.5, sm: 2 },
+                      px: { xs: 0, sm: 2 },
+                      gap: { xs: 1, sm: 0 }
+                    }}
                   >
                     <ListItemText
                       primary={saving.name}
                       secondary={formatCurrency(saving.amount)}
-                      primaryTypographyProps={{ fontWeight: 'medium' }}
-                      secondaryTypographyProps={{ fontSize: '1.1rem', color: 'primary.main' }}
+                      primaryTypographyProps={{
+                        fontWeight: 'medium',
+                        sx: { fontSize: { xs: '0.875rem', sm: '1rem' } }
+                      }}
+                      secondaryTypographyProps={{
+                        fontSize: { xs: '0.875rem', sm: '1.1rem' },
+                        color: 'primary.main'
+                      }}
                     />
+                    <Box sx={{
+                      display: 'flex',
+                      gap: 0.5,
+                      justifyContent: { xs: 'flex-end', sm: 'flex-start' },
+                      ml: { xs: 0, sm: 'auto' }
+                    }}>
+                      <IconButton
+                        edge="end"
+                        aria-label="edit"
+                        onClick={() => onEdit(saving)}
+                        disabled={loading}
+                        size="small"
+                        sx={{ p: { xs: 0.5, sm: 1 } }}
+                      >
+                        <EditIcon fontSize="small" />
+                      </IconButton>
+                      <IconButton
+                        edge="end"
+                        aria-label="delete"
+                        onClick={() => onDelete(saving.id)}
+                        disabled={loading}
+                        size="small"
+                        sx={{ p: { xs: 0.5, sm: 1 } }}
+                      >
+                        <DeleteIcon fontSize="small" />
+                      </IconButton>
+                    </Box>
                   </ListItem>
                   <Divider />
                 </Box>
@@ -90,8 +121,8 @@ export default function SavingsList({
             </List>
             <Box
               sx={{
-                mt: 2,
-                pt: 2,
+                mt: { xs: 1.5, sm: 2 },
+                pt: { xs: 1.5, sm: 2 },
                 borderTop: 2,
                 borderColor: 'divider',
                 display: 'flex',
@@ -99,10 +130,19 @@ export default function SavingsList({
                 alignItems: 'center',
               }}
             >
-              <Typography variant="subtitle1" fontWeight="bold">
+              <Typography
+                variant="subtitle1"
+                fontWeight="bold"
+                sx={{ fontSize: { xs: '0.875rem', sm: '1rem' } }}
+              >
                 Total :
               </Typography>
-              <Typography variant="h6" color="primary.main" fontWeight="bold">
+              <Typography
+                variant="h6"
+                color="primary.main"
+                fontWeight="bold"
+                sx={{ fontSize: { xs: '1rem', sm: '1.25rem' } }}
+              >
                 {formatCurrency(total)}
               </Typography>
             </Box>

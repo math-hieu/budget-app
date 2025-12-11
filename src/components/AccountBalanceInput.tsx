@@ -52,12 +52,21 @@ export default function AccountBalanceInput({
 
   return (
     <Card>
-      <CardContent>
-        <Typography variant="h6" gutterBottom>
+      <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
+        <Typography
+          variant="h6"
+          gutterBottom
+          sx={{ fontSize: { xs: '1rem', sm: '1.25rem' } }}
+        >
           Solde du Compte Courant
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate>
-          <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
+          <Box sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            gap: { xs: 1.5, sm: 2 },
+            alignItems: { xs: 'stretch', sm: 'flex-start' }
+          }}>
             <TextField
               label="Solde"
               value={balance}
@@ -75,7 +84,11 @@ export default function AccountBalanceInput({
               type="submit"
               variant="contained"
               disabled={loading || saving}
-              sx={{ mt: 0.5 }}
+              sx={{
+                mt: { xs: 0, sm: 0.5 },
+                minWidth: { xs: '100%', sm: 'auto' },
+                whiteSpace: 'nowrap'
+              }}
             >
               {saving ? 'Enregistrement...' : 'Enregistrer'}
             </Button>

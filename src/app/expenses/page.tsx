@@ -195,18 +195,34 @@ export default function ExpensesPage() {
   }
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <Box sx={{ mb: 4 }}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-          <Typography variant="h4" component="h1">
+    <Container maxWidth="md" sx={{ py: { xs: 2, sm: 3, md: 4 } }}>
+      <Box sx={{ mb: { xs: 3, sm: 4 } }}>
+        <Box sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          justifyContent: 'space-between',
+          alignItems: { xs: 'stretch', sm: 'center' },
+          mb: 2,
+          gap: { xs: 1.5, sm: 0 }
+        }}>
+          <Typography
+            variant="h4"
+            component="h1"
+            sx={{ fontSize: { xs: '1.25rem', sm: '1.75rem', md: '2.125rem' } }}
+          >
             Dépenses Récurrentes Mensuelles
           </Typography>
-          <Box sx={{ display: 'flex', gap: 2 }}>
+          <Box sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            gap: { xs: 1, sm: 2 }
+          }}>
             <Button
               variant="outlined"
               startIcon={<RestartAltIcon />}
               onClick={handleResetPayments}
               disabled={showForm}
+              sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}
             >
               Réinitialiser le Mois
             </Button>
@@ -215,24 +231,29 @@ export default function ExpensesPage() {
               startIcon={<AddIcon />}
               onClick={handleAdd}
               disabled={showForm}
+              sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}
             >
               Ajouter une Dépense
             </Button>
           </Box>
         </Box>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}
+        >
           Cochez la case à côté de chaque dépense lorsque vous la payez. Utilisez "Réinitialiser le Mois" au début de chaque mois pour tout marquer comme impayé.
         </Typography>
       </Box>
 
       {error && (
-        <Alert severity="error" sx={{ mb: 3 }} onClose={() => setError('')}>
+        <Alert severity="error" sx={{ mb: { xs: 2, sm: 3 } }} onClose={() => setError('')}>
           {error}
         </Alert>
       )}
 
       {showForm && (
-        <Box sx={{ mb: 3 }}>
+        <Box sx={{ mb: { xs: 2, sm: 3 } }}>
           <ItemForm
             nameLabel="Description"
             amountLabel="Montant Mensuel"

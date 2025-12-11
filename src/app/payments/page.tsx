@@ -120,10 +120,21 @@ export default function PaymentsPage() {
   }
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <Box sx={{ mb: 4 }}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-          <Typography variant="h4" component="h1">
+    <Container maxWidth="md" sx={{ py: { xs: 2, sm: 3, md: 4 } }}>
+      <Box sx={{ mb: { xs: 3, sm: 4 } }}>
+        <Box sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          justifyContent: 'space-between',
+          alignItems: { xs: 'stretch', sm: 'center' },
+          mb: 2,
+          gap: { xs: 1.5, sm: 0 }
+        }}>
+          <Typography
+            variant="h4"
+            component="h1"
+            sx={{ fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' } }}
+          >
             Paiements en Attente
           </Typography>
           <Button
@@ -131,23 +142,28 @@ export default function PaymentsPage() {
             startIcon={<AddIcon />}
             onClick={handleAdd}
             disabled={showForm}
+            sx={{ fontSize: { xs: '0.875rem', sm: '0.875rem' } }}
           >
             Ajouter un Paiement
           </Button>
         </Box>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}
+        >
           Suivez les factures à venir et les achats prévus. Supprimez-les une fois payés.
         </Typography>
       </Box>
 
       {error && (
-        <Alert severity="error" sx={{ mb: 3 }} onClose={() => setError('')}>
+        <Alert severity="error" sx={{ mb: { xs: 2, sm: 3 } }} onClose={() => setError('')}>
           {error}
         </Alert>
       )}
 
       {showForm && (
-        <Box sx={{ mb: 3 }}>
+        <Box sx={{ mb: { xs: 2, sm: 3 } }}>
           <ItemForm
             nameLabel="Description"
             amountLabel="Montant"

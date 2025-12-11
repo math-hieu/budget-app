@@ -138,8 +138,19 @@ export default function SavingsPage() {
 
   return (
     <Box>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-        <Typography variant="h4" component="h1">
+      <Box sx={{
+        display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' },
+        justifyContent: 'space-between',
+        alignItems: { xs: 'stretch', sm: 'center' },
+        mb: { xs: 2, sm: 3 },
+        gap: { xs: 1.5, sm: 0 }
+      }}>
+        <Typography
+          variant="h4"
+          component="h1"
+          sx={{ fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' } }}
+        >
           Économies Virtuelles
         </Typography>
         <Button
@@ -147,18 +158,22 @@ export default function SavingsPage() {
           startIcon={<AddIcon />}
           onClick={handleAdd}
           disabled={showForm}
+          sx={{
+            fontSize: { xs: '0.875rem', sm: '0.875rem' },
+            py: { xs: 1, sm: 1 }
+          }}
         >
           Ajouter une Économie
         </Button>
       </Box>
 
       {error && (
-        <Alert severity="error" sx={{ mb: 3 }} onClose={() => setError('')}>
+        <Alert severity="error" sx={{ mb: { xs: 2, sm: 3 } }} onClose={() => setError('')}>
           {error}
         </Alert>
       )}
 
-      <Stack spacing={3}>
+      <Stack spacing={{ xs: 2, sm: 3 }}>
         {showForm && (
           <Box>
             <ItemForm

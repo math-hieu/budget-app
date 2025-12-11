@@ -115,15 +115,20 @@ export default function Dashboard() {
 
   return (
     <Box>
-      <Typography variant="h4" component="h1" gutterBottom>
+      <Typography
+        variant="h4"
+        component="h1"
+        gutterBottom
+        sx={{ fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' } }}
+      >
         Tableau de Bord
       </Typography>
 
       {/* Summary Chips */}
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
-        spacing={2}
-        sx={{ mb: 3, flexWrap: 'wrap' }}
+        spacing={{ xs: 1, sm: 2 }}
+        sx={{ mb: { xs: 2, sm: 3 }, flexWrap: 'wrap' }}
       >
         <Link href="/savings" style={{ textDecoration: 'none' }}>
           <Chip
@@ -131,10 +136,11 @@ export default function Dashboard() {
             color="success"
             clickable
             sx={{
-              fontSize: '0,5rem',
-              py: 2,
-              px: 1,
+              fontSize: { xs: '0.75rem', sm: '0.875rem' },
+              py: { xs: 1.5, sm: 2 },
+              px: { xs: 0.5, sm: 1 },
               fontWeight: 600,
+              width: { xs: '100%', sm: 'auto' },
               '&:hover': {
                 backgroundColor: 'success.dark',
               }
@@ -147,10 +153,11 @@ export default function Dashboard() {
             color="error"
             clickable
             sx={{
-              fontSize: '0,5rem',
-              py: 2,
-              px: 1,
+              fontSize: { xs: '0.75rem', sm: '0.875rem' },
+              py: { xs: 1.5, sm: 2 },
+              px: { xs: 0.5, sm: 1 },
               fontWeight: 600,
+              width: { xs: '100%', sm: 'auto' },
               '&:hover': {
                 backgroundColor: 'error.dark',
               }
@@ -163,10 +170,11 @@ export default function Dashboard() {
             color="warning"
             clickable
             sx={{
-              fontSize: '0,5rem',
-              py: 2,
-              px: 1,
+              fontSize: { xs: '0.75rem', sm: '0.875rem' },
+              py: { xs: 1.5, sm: 2 },
+              px: { xs: 0.5, sm: 1 },
               fontWeight: 600,
+              width: { xs: '100%', sm: 'auto' },
               '&:hover': {
                 backgroundColor: 'warning.dark',
               }
@@ -179,10 +187,11 @@ export default function Dashboard() {
             color="info"
             clickable
             sx={{
-              fontSize: '0,5rem',
-              py: 2,
-              px: 1,
+              fontSize: { xs: '0.75rem', sm: '0.875rem' },
+              py: { xs: 1.5, sm: 2 },
+              px: { xs: 0.5, sm: 1 },
               fontWeight: 600,
+              width: { xs: '100%', sm: 'auto' },
               '&:hover': {
                 backgroundColor: 'info.dark',
               }
@@ -192,14 +201,14 @@ export default function Dashboard() {
       </Stack>
 
       {error && (
-        <Alert severity="error" sx={{ mb: 3 }}>
+        <Alert severity="error" sx={{ mb: { xs: 2, sm: 3 } }}>
           {error}
         </Alert>
       )}
 
       <Stack
         direction={{ xs: 'column', md: 'row' }}
-        spacing={3}
+        spacing={{ xs: 2, sm: 3 }}
         sx={{ width: '100%' }}
       >
         <Box sx={{ flex: 1 }}>
@@ -218,8 +227,12 @@ export default function Dashboard() {
         </Box>
       </Stack>
 
-      <Box sx={{ mt: 4 }}>
-        <Typography variant="body2" color="text.secondary">
+      <Box sx={{ mt: { xs: 3, sm: 4 } }}>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}
+        >
           Votre budget restant est calculé en soustrayant les économies virtuelles, les dépenses récurrentes impayées
           et les paiements en attente de votre solde bancaire, puis en ajoutant les remboursements en attente.
         </Typography>
