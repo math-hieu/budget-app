@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
+
 // DELETE /api/reimbursements/:id - Delete a reimbursement
 export async function DELETE(
   request: NextRequest,

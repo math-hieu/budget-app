@@ -3,6 +3,8 @@ import { prisma } from '@/lib/db';
 import { UpdateSavingsSchema, formatZodError } from '@/lib/validation';
 import { Decimal } from '@prisma/client/runtime/library';
 
+export const dynamic = 'force-dynamic';
+
 // PUT /api/savings/:id - Update virtual saving
 export async function PUT(
   request: NextRequest,
